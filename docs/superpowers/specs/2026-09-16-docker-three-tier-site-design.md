@@ -198,8 +198,8 @@ PORT=3000
 1. `docker compose config` 无语法错误。
 2. `docker compose up -d --build` 三容器全部 `Up`。
 3. `docker compose ps` 显示 `mysql` 为 `healthy`。
-4. `curl http://localhost/api/health`（服务器本机）返回 `{"status":"ok"}`。
-5. `curl http://localhost/api/time` 返回数据库当前时间，证明后端连到 MySQL。
+4. `curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/health`（服务器本机）返回 `{"status":"ok"}`。
+5. `curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time` 返回数据库当前时间，证明后端连到 MySQL。
 6. 外网浏览器访问 `https://gsy.bbdzpro.top/` 显示占位页，且页面显示"API 连通"。
 7. 外网访问 `http://gsy.bbdzpro.top/` 301 跳转到 HTTPS。
 
