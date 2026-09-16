@@ -1,0 +1,52 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/html:/usr/share/nginx/html:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - server
+    networks:
+      - webnet
+    restart: unless-stopped
+
+  server:
+    build: ./server
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - webnet
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.4
+    expose:
+      - "3306"
+    env_file:
+      - .env
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks:
+      - webnet
+    restart: unless-stopped
+
+networks:
+  webnet:
+    driver: bridge
+
+volumes:
+  mysql-data:
