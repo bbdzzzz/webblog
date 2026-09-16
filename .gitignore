@@ -1,0 +1,14 @@
+# 依赖
+node_modules/
+
+# 环境变量与密钥
+.env
+
+# 证书(私钥绝不能进 git)
+nginx/certs/
+
+# 系统文件
+.DS_Store
+
+# 日志
+*.log
