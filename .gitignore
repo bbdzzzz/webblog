@@ -5,7 +5,8 @@ node_modules/
 .env
 
 # 证书(私钥绝不能进 git)
-nginx/certs/
+nginx/certs/*
+!nginx/certs/.gitkeep
 
 # 系统文件
 .DS_Store

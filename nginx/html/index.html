@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>网站建设中</title>
+  <style>
+    body { font-family: system-ui, sans-serif; display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; }
+    .card { text-align: center; }
+    #api-status.ok { color: #0a7d2c; }
+    #api-status.fail { color: #b00020; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>网站建设中</h1>
+    <p id="api-status">API 检测中…</p>
+  </div>
+  <script>
+    fetch("/api/health")
+      .then((r) => r.json())
+      .then((d) => {
+        const el = document.getElementById("api-status");
+        el.textContent = d.status === "ok" ? "API 已连通" : "API 异常";
+        el.className = d.status === "ok" ? "ok" : "fail";
+      })
+      .catch(() => {
+        const el = document.getElementById("api-status");
+        el.textContent = "API 未连通";
+        el.className = "fail";
+      });
+  </script>
+</body>
+</html>
