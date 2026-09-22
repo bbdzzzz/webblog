@@ -181,3 +181,95 @@ h3 { margin: 14px 0 8px; font-size: 1.1rem; }
   box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .15),
               inset -1px -1px 2px rgba(0, 0, 0, .5);
 }
+
+/* ===== 11. 项目面板 ===== */
+.projects__grid {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 28px; align-items: center;
+}
+.panel-card {
+  position: relative; padding: 46px 28px 28px;
+  transition: transform .18s cubic-bezier(.34, 1.56, .64, 1), box-shadow .18s ease;
+}
+.projects__grid .panel-card:nth-child(1) { transform: rotate(-.6deg); }
+.projects__grid .panel-card:nth-child(3) { transform: rotate(.8deg); }
+.panel-card:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow: -8px -10px 18px var(--light-edge), 8px 12px 20px var(--dark-edge);
+}
+.panel-card p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
+.card__vents {
+  position: absolute; top: 14px; left: 28px; right: 28px; height: 8px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(90deg, var(--recess) 0 10px, transparent 10px 20px);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
+}
+.card__status {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 14px; font-size: .68rem; color: var(--ink-soft);
+}
+.screw {
+  position: absolute; width: 12px; height: 12px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #F4F5F6, #9EA3A8 72%);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .9), inset -1px -1px 2px rgba(0, 0, 0, .35);
+}
+.screw::after {
+  content: ""; position: absolute; left: 1.5px; right: 1.5px; top: 50%;
+  height: 1.5px; margin-top: -.75px; border-radius: 1px;
+  background: rgba(0, 0, 0, .35); transform: rotate(48deg);
+}
+.screw--tl { top: 10px; left: 10px; }
+.screw--tr { top: 10px; right: 10px; }
+.screw--bl { bottom: 10px; left: 10px; }
+.screw--br { bottom: 10px; right: 10px; }
+.pipe {
+  justify-self: center; width: 30px; height: 64px; border-radius: 15px;
+  background: linear-gradient(90deg, #B4B9BD 0%, #F1F3F4 45%, #A3A8AD 100%);
+  box-shadow: 3px 4px 8px var(--dark-edge), -2px -2px 5px var(--light-edge),
+              inset 0 -3px 4px rgba(0, 0, 0, .15);
+}
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.tag {
+  position: relative; padding: 5px 10px 5px 22px; border-radius: 4px;
+  background: var(--chassis); color: var(--ink-soft); font-size: .62rem;
+  box-shadow: inset -2px -2px 4px var(--light-edge), inset 2px 2px 4px var(--dark-edge);
+}
+.tag::before {
+  content: ""; position: absolute; left: 8px; top: 50%;
+  width: 6px; height: 6px; margin-top: -3px; border-radius: 50%;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, .4), inset -1px -1px 1px rgba(255, 255, 255, .7);
+}
+
+/* ===== 12. 教育经历 ===== */
+.edu__panel { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding: 26px 28px; }
+.edu__panel .section-title { margin: 0; }
+.edu__panel p { margin: 0; }
+.edu__period { font-size: .8rem; color: var(--ink-soft); }
+
+/* ===== 13. 暗色技能面板(明暗呼吸) ===== */
+.dark-panel {
+  padding: 40px; border-radius: var(--radius);
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, .02) 0 2px, transparent 2px 4px),
+    var(--dark);
+  color: #C9CED3;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, .5),
+              -6px -6px 14px var(--light-edge), 6px 6px 14px var(--dark-edge);
+}
+.dark-panel .section-title { color: #E7EAEC; }
+.skills__list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px 40px;
+}
+.skills__list li {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 9px 2px; font-size: .72rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, .14);
+}
+.skills__list li span:last-child { color: #7FD99E; }
+
+/* ===== 14. 联系区与页脚 ===== */
+.contact__grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.contact__meta { margin-top: 22px; font-size: .7rem; color: var(--ink-soft); }
+footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: .66rem; color: var(--ink-soft); }
