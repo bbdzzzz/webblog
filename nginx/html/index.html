@@ -3,32 +3,136 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>网站建设中</title>
-  <style>
-    body { font-family: system-ui, sans-serif; display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; }
-    .card { text-align: center; }
-    #api-status.ok { color: #0a7d2c; }
-    #api-status.fail { color: #b00020; }
-  </style>
+  <title>郭世尧 · 个人网站</title>
+  <meta name="description" content="郭世尧 — 郑州西亚斯学院人工智能专业 2027 届本科生,独立部署运维 gsy.bbdzpro.top。" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-  <div class="card">
-    <h1>网站建设中</h1>
-    <p id="api-status">API 检测中…</p>
-  </div>
-  <script>
-    fetch("/api/health")
-      .then((r) => r.json())
-      .then((d) => {
-        const el = document.getElementById("api-status");
-        el.textContent = d.status === "ok" ? "API 已连通" : "API 异常";
-        el.className = d.status === "ok" ? "ok" : "fail";
-      })
-      .catch(() => {
-        const el = document.getElementById("api-status");
-        el.textContent = "API 未连通";
-        el.className = "fail";
-      });
-  </script>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="nameplate panel">
+    <div class="nameplate__name">郭世尧</div>
+    <div class="nameplate__meta mono">Guo Shiyao · AI Engineering · Class of 2027</div>
+    <div class="status">
+      <span class="led" id="status-led" role="status" aria-label="站点 API 状态"></span>
+      <span class="mono" id="status-label">STANDBY</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero__text">
+        <p class="eyebrow mono">Personal Terminal · Nanjing</p>
+        <h1>人工智能专业本科生,<br />把网站从裸机部署到上线。</h1>
+        <p class="hero__sub">郑州西亚斯学院 · 人工智能 · 2027 届。独立完成 Docker Compose 三容器编排、Nginx HTTPS 与 MySQL 运维。可到岗时间:1 周内。</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">查看项目</a>
+          <a class="btn" href="#contact">联系我</a>
+        </div>
+      </div>
+
+      <div class="device" role="img" aria-label="复古终端设备模型,屏幕滚动显示个人信息">
+        <div class="device__screen recess">
+          <pre class="screen__text mono" id="screen-text">GUO SHIYAO
+AI ENGINEERING · ZZ SIAS
+GSY.BBDZPRO.TOP
+STATUS: OPEN TO WORK</pre>
+          <div class="screen__scanlines" aria-hidden="true"></div>
+        </div>
+        <div class="device__side" aria-hidden="true">
+          <span class="device__key"></span>
+          <span class="device__key"></span>
+          <span class="device__key"></span>
+          <span class="led led--power"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h2 class="section-title"><span class="section-title__index mono">SEC.01</span>项目经历</h2>
+      <div class="projects__grid">
+        <article class="panel panel-card">
+          <span class="screw screw--tl" aria-hidden="true"></span>
+          <span class="screw screw--tr" aria-hidden="true"></span>
+          <span class="screw screw--bl" aria-hidden="true"></span>
+          <span class="screw screw--br" aria-hidden="true"></span>
+          <div class="card__vents" aria-hidden="true"></div>
+          <div class="card__status">
+            <span class="led led--ok" aria-hidden="true"></span>
+            <span class="mono">LIVE · gsy.bbdzpro.top</span>
+          </div>
+          <h3>基于 Docker Compose 的个人网站博客系统部署</h3>
+          <p>独立完成网站服务器部署,使用 Docker Compose 编排 Nginx、Node、MySQL,配置 Nginx 托管静态页面、HTTPS/301 跳转,Node 与 MySQL 仅内网 expose。最终实现 HTTPS 正常访问、Docker Compose 一键部署。</p>
+          <ul class="tags">
+            <li class="tag mono">Docker Compose</li>
+            <li class="tag mono">Nginx</li>
+            <li class="tag mono">MySQL</li>
+            <li class="tag mono">Node.js</li>
+            <li class="tag mono">HTTPS</li>
+            <li class="tag mono">Git Hooks</li>
+          </ul>
+        </article>
+
+        <div class="pipe" aria-hidden="true"></div>
+
+        <article class="panel panel-card">
+          <span class="screw screw--tl" aria-hidden="true"></span>
+          <span class="screw screw--tr" aria-hidden="true"></span>
+          <span class="screw screw--bl" aria-hidden="true"></span>
+          <span class="screw screw--br" aria-hidden="true"></span>
+          <div class="card__vents" aria-hidden="true"></div>
+          <div class="card__status">
+            <span class="led led--ok" aria-hidden="true"></span>
+            <span class="mono">CRON · DINGTALK ALERT</span>
+          </div>
+          <h3>Python 日志分析脚本 + AI 分析 + SKILL</h3>
+          <p>Python 编写日志分析与异常告警脚本,解析 Nginx 日志并统计 QPS、状态码分布与 Top IP/URL;基于滑动时间窗口与路径/UA 规则检测异常;集成 LLM 对告警摘要做归因分析与处置建议,通过钉钉远程告警,基于 cron 定时运行。整个链路蒸馏成 AI SKILL 可随时调用。</p>
+          <ul class="tags">
+            <li class="tag mono">Python</li>
+            <li class="tag mono">Nginx 日志</li>
+            <li class="tag mono">LLM</li>
+            <li class="tag mono">Cron</li>
+            <li class="tag mono">AI Skill</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="edu" id="education">
+      <div class="panel edu__panel">
+        <h2 class="section-title"><span class="section-title__index mono">SEC.02</span>教育经历</h2>
+        <p><strong>郑州西亚斯学院 · 人工智能 · 本科</strong></p>
+        <p class="edu__period mono">2023.09 — 2027.06</p>
+      </div>
+    </section>
+
+    <section class="dark-panel" id="skills">
+      <h2 class="section-title"><span class="section-title__index mono">SEC.03</span>技术参数</h2>
+      <ul class="skills__list mono">
+        <li><span>Docker Compose</span><span>Orchestration · Prod</span></li>
+        <li><span>Nginx</span><span>Reverse Proxy · TLS</span></li>
+        <li><span>MySQL</span><span>8.4 · Persisted</span></li>
+        <li><span>Node.js</span><span>Express · ESM</span></li>
+        <li><span>Python</span><span>Log Analysis · Alerting</span></li>
+        <li><span>Linux</span><span>Ubuntu Server Ops</span></li>
+        <li><span>HTTPS</span><span>Cert · 301 Redirect</span></li>
+        <li><span>Git</span><span>Hooks · Deploy Flow</span></li>
+        <li><span>AI Toolchain</span><span>LLM · Skill Distillation</span></li>
+      </ul>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="section-title"><span class="section-title__index mono">SEC.04</span>联系</h2>
+      <div class="contact__grid">
+        <a class="btn btn--primary" href="mailto:2331298817@qq.com">2331298817@qq.com</a>
+        <button class="btn mono" id="phone-reveal" type="button" data-phone="199-3724-0852">199****0852 · 点击显示</button>
+        <a class="btn mono" href="https://gsy.bbdzpro.top">gsy.bbdzpro.top</a>
+      </div>
+      <p class="contact__meta mono">Nanjing · Available Within 1 Week</p>
+    </section>
+  </main>
+
+  <footer class="mono">© 2026 Guo Shiyao · gsy.bbdzpro.top</footer>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
