@@ -278,7 +278,7 @@ footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: 
 @media (max-width: 719px) {
   main > section { margin-top: 72px; }
   .hero { grid-template-columns: 1fr; gap: 48px; }
-  .device { max-width: 420px; margin-inline: auto; transform: rotate(-.5deg); }
+  .device { max-width: 420px; width: 100%; margin-inline: auto; transform: rotate(-.5deg); }
   .projects__grid { grid-template-columns: 1fr; }
   .pipe { transform: rotate(90deg); margin: 10px 0; }
   .hero__actions .btn, .contact__grid .btn, .contact__grid a.btn { width: 100%; }
