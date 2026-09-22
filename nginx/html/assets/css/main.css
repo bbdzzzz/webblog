@@ -193,7 +193,7 @@ h3 { margin: 14px 0 8px; font-size: 1.1rem; }
 }
 .projects__grid .panel-card:nth-child(1) { transform: rotate(-.6deg); }
 .projects__grid .panel-card:nth-child(3) { transform: rotate(.8deg); }
-.panel-card:hover {
+.projects__grid .panel-card:hover {
   transform: translateY(-5px) rotate(0deg);
   box-shadow: -8px -10px 18px var(--light-edge), 8px 12px 20px var(--dark-edge);
 }
