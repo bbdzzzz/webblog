@@ -273,3 +273,16 @@ h3 { margin: 14px 0 8px; font-size: 1.1rem; }
 .contact__grid { display: flex; gap: 16px; flex-wrap: wrap; }
 .contact__meta { margin-top: 22px; font-size: .7rem; color: var(--ink-soft); }
 footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: .66rem; color: var(--ink-soft); }
+
+/* ===== 15. 移动端:物理隐喻全部保留 ===== */
+@media (max-width: 719px) {
+  main > section { margin-top: 72px; }
+  .hero { grid-template-columns: 1fr; gap: 48px; }
+  .device { max-width: 420px; margin-inline: auto; transform: rotate(-.5deg); }
+  .projects__grid { grid-template-columns: 1fr; }
+  .pipe { transform: rotate(90deg); margin: 10px 0; }
+  .hero__actions .btn, .contact__grid .btn, .contact__grid a.btn { width: 100%; }
+  .nameplate__meta { flex-basis: 100%; order: 3; }
+  .dark-panel { padding: 28px 22px; }
+  footer { margin-top: 80px; }
+}
