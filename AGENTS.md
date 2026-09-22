@@ -1,6 +1,6 @@
 # AGENTS.md — gsy.bbdzpro.top 个人网站
 
-## 项目现状（截至 2026-09-16）
+## 项目现状（截至 2026-09-22）
 
 最小三容器骨架已上线并验证通过，域名 `https://gsy.bbdzpro.top/` 可访问。单页简历站已上线(纯静态 index.html + main.css + main.js,工业拟物风格,零外部依赖)。
 
@@ -24,7 +24,7 @@ Internet ──443/80──► nginx ──/api──► server(Express) ──�
 | `docker-compose.yml` | 三服务编排 | 只 nginx 有 `ports`；`env_file: .env` 注入 server+mysql |
 | `.env` / `.env.example` | 密钥与端口 | `.env` 不进 git，服务器上 `chmod 600`；变量名是契约 |
 | `nginx/conf.d/default.conf` | 站点配置 | 证书路径 `/etc/nginx/certs/gsy.bbdzpro.top_{bundle.pem,key}` |
-| `nginx/html/index.html` | 占位页 | fetch `/api/health` 显示连通状态 |
+| `nginx/html/index.html` | 简历单页 | 工业拟物;状态灯轮询 `/api/health` |
 | `nginx/certs/` | 证书 | 不进 git（`.gitkeep` 除外）；私钥 `chmod 600` |
 | `server/src/{index,db,routes/api}.js` | 后端 | `db.js` 读 `DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME` |
 | `server/Dockerfile` | 后端镜像 | 当前 `npm install --omit=dev`；首次构建出 lockfile 后应改 `npm ci --omit=dev` 并提交 lockfile |

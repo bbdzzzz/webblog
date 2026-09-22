@@ -6,14 +6,19 @@
   const led = document.getElementById("status-led");
   const label = document.getElementById("status-label");
   const setStatus = (ok) => {
+    if (!led || !label) return;
     led.classList.remove("led--ok", "led--fail");
     led.classList.add(ok ? "led--ok" : "led--fail");
     label.textContent = ok ? "SYSTEM OPERATIONAL" : "OFFLINE";
   };
-  fetch("/api/health")
-    .then((r) => r.json())
-    .then((d) => setStatus(d.status === "ok"))
-    .catch(() => setStatus(false));
+  const checkHealth = () => {
+    fetch("/api/health")
+      .then((r) => r.json())
+      .then((d) => setStatus(d.status === "ok"))
+      .catch(() => setStatus(false));
+  };
+  checkHealth();
+  setInterval(checkHealth, 30000);
 
   /* 2. 手机号点击显示:按钮替换为 tel 链接 */
   const phoneBtn = document.getElementById("phone-reveal");
