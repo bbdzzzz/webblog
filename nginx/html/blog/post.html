@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>文章 · 郭世尧</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="nameplate panel">
+    <div class="nameplate__name">郭世尧</div>
+    <div class="nameplate__meta mono">Blog · Entry</div>
+    <div class="status">
+      <span class="led" id="status-led" aria-label="站点 API 状态"></span>
+      <span class="mono" id="status-label" role="status">STANDBY</span>
+    </div>
+  </header>
+  <main class="page-main nameplate">
+    <a class="back-link mono" href="/blog/">← 返回列表</a>
+    <article class="panel panel-card">
+      <span class="screw screw--tl" aria-hidden="true"></span>
+      <span class="screw screw--tr" aria-hidden="true"></span>
+      <span class="screw screw--bl" aria-hidden="true"></span>
+      <span class="screw screw--br" aria-hidden="true"></span>
+      <div class="card__vents" aria-hidden="true"></div>
+      <p class="mono form-msg" id="post-state">LOADING…</p>
+      <h1 id="post-title" style="font-size:1.5rem"></h1>
+      <p class="mono" id="post-meta"></p>
+      <div class="post-body" id="post-body"></div>
+    </article>
+  </main>
+  <footer class="mono">© 2026 Guo Shiyao · gsy.bbdzpro.top</footer>
+  <script src="/assets/js/led.js" defer></script>
+  <script src="/assets/js/post.js" defer></script>
+</body>
+</html>

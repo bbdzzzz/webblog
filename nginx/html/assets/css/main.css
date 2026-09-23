@@ -294,3 +294,22 @@ footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: 
 .page-main { margin-top: 48px; }
 .back-link { display: inline-block; margin-bottom: 24px; color: var(--ink-soft); font-size: .8rem; text-decoration: none; }
 .back-link:hover { color: var(--accent); }
+
+/* ===== 16b. 博客列表与文章正文 ===== */
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-row { padding: 14px 2px; border-bottom: 1px dashed rgba(255, 255, 255, .14); }
+.post-row a { display: flex; gap: 18px; align-items: baseline; color: #E7EAEC; text-decoration: none; font-size: .78rem; }
+.post-row a:hover .post-row__title { color: #7FD99E; }
+.post-row__date { color: #7FD99E; flex: none; }
+.post-row__excerpt { margin: 6px 0 0; font-size: .68rem; color: #9AA0A5; }
+.form-msg { font-size: .72rem; color: #9AA0A5; }
+.post-body { margin-top: 18px; color: var(--ink); font-size: .95rem; }
+.post-body h2, .post-body h3 { margin: 1.2em 0 .4em; }
+.post-body p { margin: .6em 0; }
+.post-body ul, .post-body ol { padding-left: 1.4em; }
+.post-body code { font-family: var(--font-mono); font-size: .85em; background: var(--recess); padding: 2px 6px; border-radius: 4px; }
+.post-body pre { background: var(--recess); border-radius: var(--radius); padding: 16px; overflow-x: auto; box-shadow: inset -3px -3px 7px var(--light-edge), inset 3px 3px 7px var(--dark-edge); }
+.post-body pre code { background: none; padding: 0; }
+.post-body blockquote { margin: 1em 0; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--ink-soft); }
+.post-body a { color: var(--accent); }
+.post-body img { max-width: 100%; }
