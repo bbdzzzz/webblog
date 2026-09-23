@@ -313,3 +313,11 @@ footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: 
 .post-body blockquote { margin: 1em 0; padding: 4px 16px; border-left: 3px solid var(--accent); color: var(--ink-soft); }
 .post-body a { color: var(--accent); }
 .post-body img { max-width: 100%; }
+
+/* ===== 16c. 管理表单 ===== */
+.form-field { margin: 16px 0; }
+.form-label { display: block; margin-bottom: 6px; font-size: .68rem; color: var(--ink-soft); }
+.form-input, .form-textarea { width: 100%; padding: 10px 14px; border: 0; color: var(--ink); font: inherit; }
+.form-textarea { resize: vertical; line-height: 1.6; }
+.form-input:focus, .form-textarea:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
+.form-actions { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
