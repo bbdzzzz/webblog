@@ -20,7 +20,7 @@ if (process.env.SERVE_STATIC) {
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).json({ error: "internal_error" });
+  res.status(err.status || err.statusCode || 500).json({ error: "internal_error" });
 });
 
 // 幂等建表,就绪后才监听

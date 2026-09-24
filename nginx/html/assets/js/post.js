@@ -15,7 +15,7 @@ addEventListener("DOMContentLoaded", () => {
 
   fetch("/api/posts/" + encodeURIComponent(slug))
     .then((r) => {
-      if (r.status === 404) throw new Error("not_found");
+      if (!r.ok) throw new Error(r.status === 404 ? "not_found" : "offline");
       return r.json();
     })
     .then((post) => {

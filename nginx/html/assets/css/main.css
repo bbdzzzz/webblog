@@ -294,6 +294,7 @@ footer { margin-top: 110px; margin-bottom: 36px; text-align: center; font-size: 
 .page-main { display: block; margin-top: 48px; }
 .back-link { display: inline-block; margin-bottom: 24px; color: var(--ink-soft); font-size: .8rem; text-decoration: none; }
 .back-link:hover { color: var(--accent); }
+.page-main > section, .page-main > article { margin-top: 0; }
 
 /* ===== 16b. 博客列表与文章正文 ===== */
 .post-list { list-style: none; margin: 0; padding: 0; }

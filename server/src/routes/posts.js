@@ -36,7 +36,7 @@ router.post("/", async (req, res, next) => {
     }
     const { title, slug, markdown } = req.body || {};
     if (
-      typeof title !== "string" || !title.trim() ||
+      typeof title !== "string" || !title.trim() || title.trim().length > 200 ||
       typeof slug !== "string" || !SLUG_RE.test(slug) ||
       typeof markdown !== "string" || !markdown.trim()
     ) {

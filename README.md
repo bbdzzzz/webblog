@@ -9,7 +9,6 @@
 3. 配置环境变量：`cp .env.example .env`，编辑填入真实密码，`chmod 600 .env`
 4. 放置证书：把 `gsy.bbdzpro.top_bundle.pem` 与 `gsy.bbdzpro.top.key` 放入 `nginx/certs/`，`chmod 600 nginx/certs/*.key`
 5. 启动：`docker compose up -d --build`
-6. 提交锁文件（可选但推荐）：首次构建后 `server/package-lock.json` 已生成，回本机 `git add server/package-lock.json && git commit`，并把 `server/Dockerfile` 中 `npm install --omit=dev` 改为 `npm ci --omit=dev`
 
 ## 验收清单
 

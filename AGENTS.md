@@ -22,16 +22,16 @@ Internet ──443/80──► nginx ──/api──► server(Express) ──�
 | 文件 | 作用 | 注意 |
 |---|---|---|
 | `docker-compose.yml` | 三服务编排 | 只 nginx 有 `ports`；`env_file: .env` 注入 server+mysql |
-| `docker-compose.override.yml` | 本地开发 | 仅映射 MySQL 到 127.0.0.1:3306 |
+| `docker-compose.local.yml` | 本地开发 | 与 `-f` 联用映射 MySQL 到 127.0.0.1:3306;prod 无 override 不受影响 |
 | `.env` / `.env.example` | 密钥与端口 | `.env` 不进 git，服务器上 `chmod 600`；变量名是契约（含 `ADMIN_TOKEN`） |
 | `nginx/conf.d/default.conf` | 站点配置 | 证书路径 `/etc/nginx/certs/gsy.bbdzpro.top_{bundle.pem,key}` |
 | `nginx/html/index.html` | 简历单页 | 工业拟物;状态灯轮询 `/api/health` |
 | `nginx/certs/` | 证书 | 不进 git（`.gitkeep` 除外）；私钥 `chmod 600` |
 | `server/src/{index,db,routes/api}.js` | 后端 | `db.js` 读 `DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME` |
 | `server/src/routes/posts.js` | 博客 API | POST 需 Bearer ADMIN_TOKEN;slug 规则见 .env.example 段 |
-| `server/Dockerfile` | 后端镜像 | 当前 `npm install --omit=dev`；首次构建出 lockfile 后应改 `npm ci --omit=dev` 并提交 lockfile |
+| `server/Dockerfile` | 后端镜像 | `npm ci --omit=dev`(lockfile 已提交) |
 
-环境变量契约（`.env.example` 为准）：`MYSQL_ROOT_PASSWORD`、`MYSQL_DATABASE`、`MYSQL_USER`、`MYSQL_PASSWORD`、`DB_HOST`（容器内=`mysql`）、`DB_PORT`、`DB_NAME`、`DB_USER`、`DB_PASSWORD`、`PORT`。
+环境变量契约（`.env.example` 为准）：`MYSQL_ROOT_PASSWORD`、`MYSQL_DATABASE`、`MYSQL_USER`、`MYSQL_PASSWORD`、`DB_HOST`（容器内=`mysql`）、`DB_PORT`、`DB_NAME`、`DB_USER`、`DB_PASSWORD`、`ADMIN_TOKEN`、`PORT`。
 
 ## 部署（服务器）
 
@@ -57,9 +57,9 @@ curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time
 ## 本地开发
 
 ```bash
-docker compose up -d mysql    # override 已映射 MySQL 到 127.0.0.1:3306
+docker compose -f docker-compose.yml -f docker-compose.local.yml up -d mysql   # local.yml 映射 MySQL 到 127.0.0.1:3306
 cp .env.example .env          # 填值
-cd server && DB_HOST=127.0.0.1 SERVE_STATIC=<repo绝对路径>/nginx/html npm run dev
+cd server && DB_HOST=127.0.0.1 SERVE_STATIC=<repo绝对路径>/nginx/html npm run dev   # npm run dev 经 --env-file 读 ../.env,inline 变量优先
 ```
 
 浏览器打开 `http://127.0.0.1:3000/`。
@@ -67,7 +67,7 @@ cd server && DB_HOST=127.0.0.1 SERVE_STATIC=<repo绝对路径>/nginx/html npm ru
 ## 工作方式约定（给后续 agent）
 
 - **流程**：新功能走 brainstorming → writing-plans → subagent-driven-development；不要跳过设计直接写代码。
-- **验证**：本机（macOS）**没有 Docker**，compose / Dockerfile 的改动只能静态校验 + 到服务器实测；不要把"本地跑通了"当成验收标准。
+- **验证**：本机已有 Docker(OrbStack),compose 改动可本地实测,服务器实测仍为最终验收。
 - **密钥**：绝不把 `.env`、`nginx/certs/` 下的真实证书/私钥提交进 git。
 - **文档**：设计与计划存 `docs/superpowers/{specs,plans}/`，并提交。
 
@@ -76,7 +76,6 @@ cd server && DB_HOST=127.0.0.1 SERVE_STATIC=<repo绝对路径>/nginx/html npm ru
 - `.gitignore` 中 `nginx/certs/*` + `!nginx/certs/.gitkeep` 规则缺一行解释注释。
 - Nginx 未加 HSTS 头（HTTPS 上线后再评估）。
 - `docker-compose.yml` 顶部缺一行"需要 .env"注释；mysql healthcheck 无 `start_period`；nginx `depends_on server` 是短形式（server 无 healthcheck）。
-- `server/package-lock.json` 尚未生成/提交（首次服务器构建后应提交并切换 Dockerfile 到 `npm ci`）。
 
 ## 下一步
 
