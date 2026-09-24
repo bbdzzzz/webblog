@@ -2,7 +2,7 @@
 
 ## 项目现状（截至 2026-09-22）
 
-最小三容器骨架已上线并验证通过，域名 `https://gsy.bbdzpro.top/` 可访问。单页简历站已上线(纯静态 index.html + main.css + main.js,工业拟物风格,零外部依赖)。
+最小三容器骨架已上线并验证通过，域名 `https://gsy.bbdzpro.top/` 可访问。单页简历站已上线(纯静态 index.html + main.css + main.js,工业拟物风格,零外部依赖)。博客已上线:posts API(Bearer 鉴权提交,marked 服务端渲染)+ /blog/ 列表、/admin/ 提交页、两个项目空详情页。
 
 ## 架构
 
@@ -22,11 +22,13 @@ Internet ──443/80──► nginx ──/api──► server(Express) ──�
 | 文件 | 作用 | 注意 |
 |---|---|---|
 | `docker-compose.yml` | 三服务编排 | 只 nginx 有 `ports`；`env_file: .env` 注入 server+mysql |
-| `.env` / `.env.example` | 密钥与端口 | `.env` 不进 git，服务器上 `chmod 600`；变量名是契约 |
+| `docker-compose.override.yml` | 本地开发 | 仅映射 MySQL 到 127.0.0.1:3306 |
+| `.env` / `.env.example` | 密钥与端口 | `.env` 不进 git，服务器上 `chmod 600`；变量名是契约（含 `ADMIN_TOKEN`） |
 | `nginx/conf.d/default.conf` | 站点配置 | 证书路径 `/etc/nginx/certs/gsy.bbdzpro.top_{bundle.pem,key}` |
 | `nginx/html/index.html` | 简历单页 | 工业拟物;状态灯轮询 `/api/health` |
 | `nginx/certs/` | 证书 | 不进 git（`.gitkeep` 除外）；私钥 `chmod 600` |
 | `server/src/{index,db,routes/api}.js` | 后端 | `db.js` 读 `DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME` |
+| `server/src/routes/posts.js` | 博客 API | POST 需 Bearer ADMIN_TOKEN;slug 规则见 .env.example 段 |
 | `server/Dockerfile` | 后端镜像 | 当前 `npm install --omit=dev`；首次构建出 lockfile 后应改 `npm ci --omit=dev` 并提交 lockfile |
 
 环境变量契约（`.env.example` 为准）：`MYSQL_ROOT_PASSWORD`、`MYSQL_DATABASE`、`MYSQL_USER`、`MYSQL_PASSWORD`、`DB_HOST`（容器内=`mysql`）、`DB_PORT`、`DB_NAME`、`DB_USER`、`DB_PASSWORD`、`PORT`。
@@ -52,9 +54,15 @@ curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time
 
 > 80 端口全站 301 到 HTTPS，证书又是签给 `gsy.bbdzpro.top` 的，所以本地验证必须 `--resolve` 把域名钉到 `127.0.0.1`；不能直接 `curl http://localhost/api/...`。
 
-## 本地开发（待补）
+## 本地开发
 
-当前仓库还没有 `docker-compose.override.yml`。回到本机写代码时再补：MySQL 临时映射 3306 到宿主机 + `node --watch` 跑后端 + 前端直开 html。
+```bash
+docker compose up -d mysql    # override 已映射 MySQL 到 127.0.0.1:3306
+cp .env.example .env          # 填值
+cd server && DB_HOST=127.0.0.1 SERVE_STATIC=<repo绝对路径>/nginx/html npm run dev
+```
+
+浏览器打开 `http://127.0.0.1:3000/`。
 
 ## 工作方式约定（给后续 agent）
 
@@ -72,4 +80,4 @@ curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time
 
 ## 下一步
 
-博客/文章功能(另起 brainstorming → spec → plan);按需补数据库初始化脚本与本地开发 override。
+项目详情页正文撰写;文章编辑/删除与分页(需要时另起 brainstorming)。

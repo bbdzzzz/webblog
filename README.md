@@ -19,6 +19,8 @@ docker compose up -d --build     # 三容器 Up
 docker compose ps                # mysql 应为 healthy
 curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/health # {"status":"ok"}
 curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time   # {"now":"..."} 证明后端连到 MySQL
+curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/posts
+curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/blog/
 ```
 
 注意：80 端口会 301 跳到 HTTPS，且证书只对 `gsy.bbdzpro.top` 有效，所以本机 curl 需要用 `--resolve` 把该域名指到 `127.0.0.1`，才能在不改 `/etc/hosts`、不加 `-k` 的前提下完成有效 TLS 校验。
