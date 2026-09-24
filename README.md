@@ -9,7 +9,6 @@
 3. 配置环境变量：`cp .env.example .env`，编辑填入真实密码，`chmod 600 .env`
 4. 放置证书：把 `gsy.bbdzpro.top_bundle.pem` 与 `gsy.bbdzpro.top.key` 放入 `nginx/certs/`，`chmod 600 nginx/certs/*.key`
 5. 启动：`docker compose up -d --build`
-6. 提交锁文件（可选但推荐）：首次构建后 `server/package-lock.json` 已生成，回本机 `git add server/package-lock.json && git commit`，并把 `server/Dockerfile` 中 `npm install --omit=dev` 改为 `npm ci --omit=dev`
 
 ## 验收清单
 
@@ -19,6 +18,8 @@ docker compose up -d --build     # 三容器 Up
 docker compose ps                # mysql 应为 healthy
 curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/health # {"status":"ok"}
 curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/time   # {"now":"..."} 证明后端连到 MySQL
+curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/api/posts
+curl --resolve gsy.bbdzpro.top:443:127.0.0.1 https://gsy.bbdzpro.top/blog/
 ```
 
 注意：80 端口会 301 跳到 HTTPS，且证书只对 `gsy.bbdzpro.top` 有效，所以本机 curl 需要用 `--resolve` 把该域名指到 `127.0.0.1`，才能在不改 `/etc/hosts`、不加 `-k` 的前提下完成有效 TLS 校验。

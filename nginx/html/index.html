@@ -28,6 +28,7 @@
         <div class="hero__actions">
           <a class="btn btn--primary" href="#projects">查看项目</a>
           <a class="btn" href="#contact">联系我</a>
+          <a class="btn" href="/blog/">博客</a>
         </div>
       </div>
 
@@ -61,7 +62,7 @@ STATUS: OPEN TO WORK</pre>
             <span class="led led--ok" aria-hidden="true"></span>
             <span class="mono">LIVE · gsy.bbdzpro.top</span>
           </div>
-          <h3>基于 Docker Compose 的个人网站博客系统部署</h3>
+          <h3><a class="card-link" href="/projects/docker-compose-blog.html">基于 Docker Compose 的个人网站博客系统部署</a></h3>
           <p>独立完成网站服务器部署,使用 Docker Compose 编排 Nginx、Node、MySQL,配置 Nginx 托管静态页面、HTTPS/301 跳转、MySQL,Node 仅内网 expose。最终实现 HTTPS 正常访问、Docker Compose 可一键部署。</p>
           <ul class="tags">
             <li class="tag mono">Docker Compose</li>
@@ -85,7 +86,7 @@ STATUS: OPEN TO WORK</pre>
             <span class="led led--ok" aria-hidden="true"></span>
             <span class="mono">CRON · DINGTALK ALERT</span>
           </div>
-          <h3>Python 日志分析脚本 + AI 分析 + SKILL</h3>
+          <h3><a class="card-link" href="/projects/python-log-ai.html">Python 日志分析脚本 + AI 分析 + SKILL</a></h3>
           <p>Python 编写日志分析与异常告警脚本,解析 Nginx 日志并统计 QPS、状态码分布与 Top IP/URL;基于滑动时间窗口与路径/UA 规则检测异常;集成 LLM 对告警摘要做归因分析与处置建议,通过钉钉远程告警,基于 cron 定时运行。将整个链路蒸馏成 AI SKILL 可在 AI 工具上随时调用。</p>
           <ul class="tags">
             <li class="tag mono">Python</li>
@@ -133,6 +134,7 @@ STATUS: OPEN TO WORK</pre>
   </main>
 
   <footer class="mono">© 2026 Guo Shiyao · gsy.bbdzpro.top</footer>
+  <script src="assets/js/led.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

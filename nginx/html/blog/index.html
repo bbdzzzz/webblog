@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>博客 · 郭世尧</title>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="nameplate panel">
+    <div class="nameplate__name">郭世尧</div>
+    <div class="nameplate__meta mono">Blog · Entries</div>
+    <div class="status">
+      <span class="led" id="status-led" aria-label="站点 API 状态"></span>
+      <span class="mono" id="status-label" role="status">STANDBY</span>
+    </div>
+  </header>
+  <main class="page-main nameplate">
+    <a class="back-link mono" href="/">← 返回首页</a>
+    <section class="dark-panel">
+      <h2 class="section-title"><span class="section-title__index mono">LOG</span>文章列表</h2>
+      <p class="mono form-msg" id="list-state">LOADING…</p>
+      <ul class="post-list mono" id="post-list"></ul>
+    </section>
+  </main>
+  <footer class="mono">© 2026 Guo Shiyao · gsy.bbdzpro.top</footer>
+  <script src="/assets/js/led.js" defer></script>
+  <script src="/assets/js/blog.js" defer></script>
+</body>
+</html>
