@@ -1,6 +1,6 @@
 # AGENTS.md — gsy.bbdzpro.top 个人网站
 
-## 项目现状（截至 2026-09-22）
+## 项目现状（截至 2026-09-25）
 
 最小三容器骨架已上线并验证通过，域名 `https://gsy.bbdzpro.top/` 可访问。单页简历站已上线(纯静态 index.html + main.css + main.js,工业拟物风格,零外部依赖)。博客已上线:posts API(Bearer 鉴权提交,marked 服务端渲染)+ /blog/ 列表、/admin/ 提交页、两个项目空详情页。
 
@@ -28,7 +28,7 @@ Internet ──443/80──► nginx ──/api──► server(Express) ──�
 | `nginx/html/index.html` | 简历单页 | 工业拟物;状态灯轮询 `/api/health` |
 | `nginx/certs/` | 证书 | 不进 git（`.gitkeep` 除外）；私钥 `chmod 600` |
 | `server/src/{index,db,routes/api}.js` | 后端 | `db.js` 读 `DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME` |
-| `server/src/routes/posts.js` | 博客 API | POST 需 Bearer ADMIN_TOKEN;slug 规则见 .env.example 段 |
+| `server/src/routes/posts.js` | 博客 API | `GET /` 列表、`GET /:slug` 详情(无需鉴权);`POST /` 需 Bearer ADMIN_TOKEN;slug 规则见 .env.example 段 |
 | `server/Dockerfile` | 后端镜像 | `npm ci --omit=dev`(lockfile 已提交) |
 
 环境变量契约（`.env.example` 为准）：`MYSQL_ROOT_PASSWORD`、`MYSQL_DATABASE`、`MYSQL_USER`、`MYSQL_PASSWORD`、`DB_HOST`（容器内=`mysql`）、`DB_PORT`、`DB_NAME`、`DB_USER`、`DB_PASSWORD`、`ADMIN_TOKEN`、`PORT`。
